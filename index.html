@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><? print $song; ?></title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+<script>
+                                var mountpoint = "/RH29126";
+                                var mountpoint2 = "/nonstop";//нонстоп
+                                var nac = true;
+                                var counter=0;
+                                var url = "http://s0.radioheart.ru:8000/json_new.xsl?"; //наш url к json в папке Web
+                                var url2 = url;
+                                url+= "mount=" + mountpoint + "&callback=";
+                                url2+="mount=" + mountpoint2 + "&callback=";
+
+                                function parseMusic(results)
+                                {
+                                    for  (var n in results){
+                                        var nm = results[n];
+                                        if(nm["title"] && nac){
+                                            nac = false;
+                                            $('#stream_name').text('Cтанция: '+nm["name"]);
+                                            $('#stream_song').text('Исполнитель: '+nm["title"]);
+                                            $('#stream_listenters').text('Слушателей: '+nm["listeners"]);
+                                        }
+                                    }
+                                }
+                                var span;
+                                var script;
+                                $.ajaxSetup({ scriptCharset: "utf-8" , contentType: "application/json; charset=utf-8"});
+                                function initMusic()
+                                {
+                                    span = document.createElement("span");
+                                    span.id="getscript";
+                                    document.body.appendChild(span);
+                                    script  = document.createElement("script");
+                                    script.type="text/javascript";
+                                    script.charset="UTF-8";
+                                }
+                                function addMusic()
+                                {
+                                    nac = true;
+                                    $('#getscript').empty();
+                                    script.src = url + counter;
+                                    $('#getscript').append(script);
+                                    script.src = url2 + counter;
+                                    $('#getscript').append(script);
+                                }
+                                function updateMusic()
+                                {
+                                    counter=counter+1;
+                                    addMusic();
+                                }
+
+                                $(document).ready(
+                                        function () {
+                                            initMusic();
+                                            addMusic();
+                                            setInterval('updateMusic()', 30000 );
+                                        });
+                            </script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div class="mhn-player">
+<div class="album-art"></div>
+<div class="play-list">
+	<a href="#" class="play"
+		data-title="<?=$song;?>"
+		data-albumart="https://yt3.ggpht.com/a/AATXAJx9f_tqDPYZDbzLEIUQ6FxJsV3A5SdGLSiDcA=s900-c-k-c0xffffffff-no-rj-mo"
+		data-url="http://s0.radioheart.ru:8000/RH29126"></a>
+</div>
+
+<div class="audio"></div><div class="current-info">
+							<div id="stream_name"></div>
+                            <div id="stream_song"></div>
+                            <div id="stream_listenters"></div>
+<div class="song-title"> </div>
+</div>
+
+<div class="controls"> <div class="duration clearfix">
+	</div>
+
+<div class="progress"><div class="bar"></div></div>
+
+<div class="action-button">
+	<a href="#" class="play-pause"><i class="fa fa-pp"></i></a>
+	<a href="#" class="stop"><i class="fa fa-stop"></i></a>
+	<input type="range" class="volume" min="0" max="1" step="0.1" value="0.5" data-css="0.5">
+</div>
+
+
+</div>
+</div>
+
+</body>
+<!-- partial -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+<script src='https://enscrollplugin.com/releases/enscroll-0.6.1.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
