@@ -162,7 +162,7 @@ var Audio = {
 
 
 
-  								var mountpoint = "/RH29126";
+  				var mountpoint = "/RH29126";
                                 var mountpoint2 = "/nonstop";//нонстоп
                                 var nac = true;
                                 var counter=0;
@@ -179,7 +179,7 @@ var Audio = {
                                             nac = false;
                                             $('#stream_name').text('Название станции: '+nm["name"]);
                                             $('#stream_description').text('Описание станции: '+nm["description"]);
-                                            $('#stream_song').text('♫•*¨*•.¸¸♪ : '+nm["title"]);
+                                            $('#stream_song').text(''+nm["title"]);
                                             $('#stream_listenters').text('(^_^♪) : '+nm["listeners"]);
                                         }
                                     }
