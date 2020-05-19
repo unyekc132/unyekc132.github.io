@@ -167,7 +167,7 @@ var Audio = {
                                 var nac = true;
                                 var counter=0;
                                 var url = "https://s0.radioheart.ru:8000/json_new.xsl?"; //наш url к json в папке Web
-                                var url2 = url;
+                                var url2 ="https://a3.radioheart.ru:8005/json_new.xsl?";
                                 url+= "mount=" + mountpoint + "&callback=";
                                 url2+="mount=" + mountpoint2 + "&callback=";
 
