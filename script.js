@@ -177,7 +177,6 @@ var Audio = {
                                         var nm = results[n];
                                         if(nm["title"] && nac){
                                             nac = false;
-                                            $('#stream_name').text('Cтанция: '+nm["name"]);
                                             $('#stream_song').text('Исполнитель: '+nm["title"]);
                                             $('#stream_listenters').text('Слушателей: '+nm["listeners"]);
                                         }
